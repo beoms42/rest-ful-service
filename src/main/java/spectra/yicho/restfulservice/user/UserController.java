@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.*;
 
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUser =  service.save(user);
 
         // 사용자에게 요청 값을 변환해주기
@@ -58,7 +59,7 @@ public class UserController {
     public void deleteUser(@PathVariable int id) {
         User user = service.deleteById(id);
 
-        if(user == null) {
+        if(user == null) { // 아이디가 없을경우
             throw new UserNotFoundException(String.format("ID[%s] 아이디가 없습니다.", id));
         }
     }
