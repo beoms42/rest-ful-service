@@ -42,7 +42,7 @@ public class AdminUserController {
     //한명 조회
     //관리자는 제어하는 항목까지 다 볼 수 있어야함
 //    @GetMapping(value = "/users/{id}", params = "version=1")
-    @GetMapping(value = "/users/{id}", headers = "X-API-VERSION=1")
+    @GetMapping(value = "/users/{id}")
     public MappingJacksonValue retrieveUserV1(@PathVariable int id) {
 
         User user = service.findOne(id);
