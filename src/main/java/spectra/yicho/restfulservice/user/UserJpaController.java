@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/jpa")
@@ -50,5 +51,17 @@ public class UserJpaController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping("/users/{id}/posts")
+    public List<Post> retrieveAllPostsByUser(@PathVariable int id) {
+        // Optional >> 한개만 있을때도 상관없이
+        Optional<User2> user = userRepository.findById(id);
+
+        if(!user.isPresent()) {
+            throw new UserNotFoundException(String.format("ID[%s] not Found", id));
+        }
+
+        return user.get().getPosts();
     }
 }
