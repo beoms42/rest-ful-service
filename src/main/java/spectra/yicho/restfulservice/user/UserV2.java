@@ -14,6 +14,6 @@ import java.util.Date;
 // @JsonIgnoreProperties(value = {"password"})
 @JsonFilter("UserInfoV2")
 @NoArgsConstructor
-public class UserV2 extends User{
+public class UserV2 extends User2{
     private String grade;
 }

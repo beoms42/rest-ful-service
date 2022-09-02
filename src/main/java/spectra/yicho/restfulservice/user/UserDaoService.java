@@ -9,21 +9,21 @@ public class UserDaoService {
 
     // 비지니스 로직 처리 Dao + Service
 
-    private static List<User> users = new ArrayList<>();
+    private static List<User2> users = new ArrayList<>();
 
     private static int usersCount = 3;
 
     static {
-        users.add(new User(1, "youngIn",new Date(), "pass1", "701010-1111111"));
-        users.add(new User(2, "heeWon",new Date(), "pass2", "801010-1111111"));
-        users.add(new User(3, "Knight",new Date(), "pass3", "901010-1111111"));
+        users.add(new User2(1, "youngIn",new Date(), "pass1", "701010-1111111"));
+        users.add(new User2(2, "heeWon",new Date(), "pass2", "801010-1111111"));
+        users.add(new User2(3, "Knight",new Date(), "pass3", "901010-1111111"));
     }
 
-    public List<User> findAll() {
+    public List<User2> findAll() {
         return users;
     }
 
-    public User save(User user) {
+    public User2 save(User2 user) {
         if(user.getId() == null) {
             user.setId(++usersCount);
         }
@@ -32,8 +32,8 @@ public class UserDaoService {
         return user;
     }
 
-    public User findOne(int id) {
-        for(User u : users){
+    public User2 findOne(int id) {
+        for(User2 u : users){
             if(u.getId() == id) {
                 return u;
             }
@@ -42,10 +42,10 @@ public class UserDaoService {
         return null;
     }
 
-    public User deleteById(int id) {
-        Iterator<User> iterator = users.iterator();
+    public User2 deleteById(int id) {
+        Iterator<User2> iterator = users.iterator();
         while(iterator.hasNext()) {
-            User user = iterator.next();
+            User2 user = iterator.next();
 
             if(user.getId() == id) {
                 iterator.remove();

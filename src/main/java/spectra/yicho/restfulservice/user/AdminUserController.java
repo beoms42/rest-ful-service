@@ -26,7 +26,7 @@ public class AdminUserController {
 
     @GetMapping("/users")
     public MappingJacksonValue retrieveAllUsers() {
-        List<User> all = service.findAll();
+        List<User2> all = service.findAll();
 
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
                 .filterOutAllExcept("id","name","joinDate","ssn");
@@ -45,7 +45,7 @@ public class AdminUserController {
     @GetMapping(value = "/users/{id}")
     public MappingJacksonValue retrieveUserV1(@PathVariable int id) {
 
-        User user = service.findOne(id);
+        User2 user = service.findOne(id);
 
         if(user == null) {
             System.out.println("user null");
@@ -68,7 +68,7 @@ public class AdminUserController {
     @GetMapping(value = "/users/{id}", headers = "X-API-VERSION=2")
     public MappingJacksonValue retrieveUserV2(@PathVariable int id) {
 
-        User user = service.findOne(id);
+        User2 user = service.findOne(id);
 
         if(user == null) {
             System.out.println("user null");

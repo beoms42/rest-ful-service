@@ -18,15 +18,15 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> retrieveAllUsers() {
+    public List<User2> retrieveAllUsers() {
         return service.findAll();
     }
 
     //한명 조회
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id) {
+    public User2 retrieveUser(@PathVariable int id) {
 
-        User user = service.findOne(id);
+        User2 user = service.findOne(id);
 
         if(user == null) {
             System.out.println("user null");
@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        User savedUser =  service.save(user);
+    public ResponseEntity<User2> createUser(@Valid @RequestBody User2 user) {
+        User2 savedUser =  service.save(user);
 
         // 사용자에게 요청 값을 변환해주기
         // fromCurrentRequest() :현재 요청되어진 request값을 사용한다는 뜻
@@ -57,7 +57,7 @@ public class UserController {
 
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id) {
-        User user = service.deleteById(id);
+        User2 user = service.deleteById(id);
 
         if(user == null) { // 아이디가 없을경우
             throw new UserNotFoundException(String.format("ID[%s] 아이디가 없습니다.", id));
